@@ -1,6 +1,6 @@
 language: csharp
 solution: Polaris/Polaris.sln
-donet: 1.0.0-preview2-003121
+dotnet: 1.0.0-preview2-003121
 mono: none
 
 matrix:
