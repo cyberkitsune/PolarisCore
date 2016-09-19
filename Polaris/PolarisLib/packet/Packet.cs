@@ -14,9 +14,13 @@ namespace Polaris.Packet
             Array.Copy(pkt, 0x8, this.data, 0x0, pkt.Length - 0x8);
         }
 
+        public ushort TypeToUShort()
+        {
+            return (ushort)((header.type << 8) | header.subType);
+        }
+
         protected virtual void ParseData(byte[] data)
         {
-
         }
     }
 }
