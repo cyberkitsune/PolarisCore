@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Polaris.Packet
+namespace Polaris.Lib.Packet
 {
     public partial class Packet
     {

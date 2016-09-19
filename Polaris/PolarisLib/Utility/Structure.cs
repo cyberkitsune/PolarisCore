@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Polaris.Utility
+namespace Polaris.Lib.Utility
 {
     public static class Structure
     {

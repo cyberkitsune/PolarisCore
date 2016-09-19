@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Polaris.Extensions
+namespace Polaris.Lib.Extensions
 {
     public static class IListExtensions
     {
