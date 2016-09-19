@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Polaris.Utility
+namespace Polaris.Lib.Utility
 {
     public static class HalfPrecision
     {

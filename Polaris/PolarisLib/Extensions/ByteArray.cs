@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Polaris.Extensions
+namespace Polaris.Lib.Extensions
 {
     public static class ByteArrayExtensions
     {

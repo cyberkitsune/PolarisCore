@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Polaris.Packet
+namespace Polaris.Lib.Packet
 {
     // TODO: For packets it might be better to use unsafe code and Marshal + packed structures to parse the data out
     public partial class Packet

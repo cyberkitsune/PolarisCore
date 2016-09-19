@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Polaris.Data
+namespace Polaris.Lib.Data
 {
     /*
         Hoo boy, this is 468 bytes!

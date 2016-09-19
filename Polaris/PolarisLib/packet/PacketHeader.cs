@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Polaris.Packet
+namespace Polaris.Lib.Packet
 {
     // [Size:4][Type:1][SubType:1][Flag1:1][Flag2:1]
 

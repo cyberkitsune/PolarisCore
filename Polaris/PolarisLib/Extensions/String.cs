@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Polaris.Extensions
+namespace Polaris.Lib.Extensions
 {
     public static class StringExtensions
     {

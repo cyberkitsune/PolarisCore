@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Polaris.Data
+namespace Polaris.Lib.Data
 {
     public enum ShipStatus : ushort
     {

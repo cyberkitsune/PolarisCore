@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Polaris.Data
+namespace Polaris.Lib.Data
 {
     /*
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
