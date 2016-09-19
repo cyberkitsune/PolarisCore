@@ -25,20 +25,21 @@ namespace Polaris.Packet
 
         protected override void ParseData(byte[] data)
         {
-            BinaryReader reader = new BinaryReader(new MemoryStream(data));
-
-            playerID = reader.ReadUInt32();
-            unk1 = reader.ReadBytes(0x8);
-            targetID = reader.ReadUInt32();
-            unk2 = reader.ReadBytes(0x6);
-            instanceID = reader.ReadUInt16();
-            sourceID = reader.ReadUInt32();
-            unk3 = reader.ReadBytes(0x8);
-            atkID = reader.ReadUInt32();
-            value = reader.ReadInt32();
-            unk4 = reader.ReadBytes(0x10);
-            flags = reader.ReadByte();
-            unk5 = reader.ReadBytes(0x11);
+            using (BinaryReader reader = new BinaryReader(new MemoryStream(data)))
+            {
+                playerID = reader.ReadUInt32();
+                unk1 = reader.ReadBytes(0x8);
+                targetID = reader.ReadUInt32();
+                unk2 = reader.ReadBytes(0x6);
+                instanceID = reader.ReadUInt16();
+                sourceID = reader.ReadUInt32();
+                unk3 = reader.ReadBytes(0x8);
+                atkID = reader.ReadUInt32();
+                value = reader.ReadInt32();
+                unk4 = reader.ReadBytes(0x10);
+                flags = reader.ReadByte();
+                unk5 = reader.ReadBytes(0x11);
+            }
         }
     }
 }
