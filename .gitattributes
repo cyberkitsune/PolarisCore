@@ -1,4 +1,4 @@
 # Normalize line endings
-*       text=auto
+#*       text=auto
 *.xproj text eol=crlf
 *.sln   text eol=crlf
