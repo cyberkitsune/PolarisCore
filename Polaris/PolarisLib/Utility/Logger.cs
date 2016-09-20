@@ -1,11 +1,20 @@
 using System;
 using System.IO;
+using System.Reflection;
 
 namespace Polaris.Lib.Utility
 {
     public static class Logger
     {
-        private static StreamWriter writer = File.CreateText("Polaris.log");
+		private static StreamWriter writer = null;
+
+		public static bool WriteToFile { get; set; }
+
+		public static void Init()
+		{
+			if (WriteToFile)
+				writer = File.CreateText(Assembly.GetEntryAssembly().FullName.Split(',')[0] + ".log");
+		}
 
         public static void Write(string text, params object[] args)
         {
@@ -15,26 +24,26 @@ namespace Polaris.Lib.Utility
 
         public static void WriteInfo(string text, params object[] args)
         {
-            WriteLine(ConsoleColor.Green, string.Format(text, args));
-            WriteFile(text, args);
+            WriteLine(ConsoleColor.Green, "[INFO]: " + string.Format(text, args));
+            WriteFile("[INFO]: " + text, args);
         }
 
         public static void WriteMessage(string text, params object[] args)
         {
-            WriteLine(ConsoleColor.Cyan, string.Format(text, args));
-            WriteFile(text, args);
+            WriteLine(ConsoleColor.Cyan, "[MESSAGE]: " + string.Format(text, args));
+            WriteFile("[MESSAGE]: " + text, args);
         }
 
         public static void WriteWarning(string text, params object[] args)
         {
-            WriteLine(ConsoleColor.Yellow, string.Format(text, args));
-            WriteFile(text, args);
+            WriteLine(ConsoleColor.Yellow, "[WARNING]: " + string.Format(text, args));
+            WriteFile("[WARNING]: " + text, args);
         }
 
         public static void WriteError(string text, params object[] args)
         {
-            WriteLine(ConsoleColor.Red, string.Format(text, args));
-            WriteFile(text, args);
+            WriteLine(ConsoleColor.Red, "[ERROR]: " + string.Format(text, args));
+            WriteFile("[ERROR]: " + text, args);
         }
 
         public static void WriteException(string message, Exception e)
@@ -105,6 +114,9 @@ namespace Polaris.Lib.Utility
 
         public static void WriteFile(string text, params object[] args)
         {
+			if (!WriteToFile || writer == null)
+				return;
+
             if (args.Length > 0)
                 writer.WriteLine(DateTime.Now + " - " + text, args);
             else
