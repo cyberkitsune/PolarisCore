@@ -7,18 +7,20 @@ namespace Polaris.Auth
 {
 	public class Config
 	{
-		public string ClientVersion { get; } = "4.0402.1";
+		public string ClientVersion { get; set; } = "4.0402.1";
 
-		public string BindIP { get; } = "127.0.0.1";
-		public uint Port { get; } = 12300;
+		public string BindIP { get; set; } = "127.0.0.1";
+		public uint Port { get; set; } = 12300;
 
-		public string RSAPublicKey { get; } = "publicKey.blob"; // File Path
-		public string RSAPrivateKey { get; } = "privateKey.blob"; // File Path
+		public string RSAPublicKey { get; set; } = "publicKey.blob"; // File Path
+		public string RSAPrivateKey { get; set; } = "privateKey.blob"; // File Path
 
-		public string DatabaseHost { get; } = "127.0.0.1";
-		public string DatabaseUsername { get; } = "Polaris";
-		public string DatabasePassword { get; } = "Polaris";
-		public string DatabaseName { get; } = "Polaris";
+		public string DatabaseHost { get; set; } = "127.0.0.1";
+		public string DatabaseUsername { get; set; } = "Polaris";
+		public string DatabasePassword { get; set; } = "Polaris";
+		public string DatabaseName { get; set; } = "Polaris";
+
+		public bool FileLogging { get; set; } = true;
 
 		public static void Create(string filename)
 		{
