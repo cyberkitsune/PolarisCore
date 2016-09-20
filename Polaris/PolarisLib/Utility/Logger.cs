@@ -114,7 +114,7 @@ namespace Polaris.Lib.Utility
 
         public static void WriteFile(string text, params object[] args)
         {
-			if (writer == null)
+			if (!WriteToFile || writer == null)
 				return;
 
             if (args.Length > 0)
