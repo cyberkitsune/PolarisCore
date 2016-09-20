@@ -13,6 +13,7 @@
     "PolarisLib": "*",
     "System.Runtime.Loader": "4.0.0",
     "System.Security.Cryptography.Csp": "4.0.0"
+
   },
 
   "frameworks": {
