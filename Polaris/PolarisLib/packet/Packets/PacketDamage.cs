@@ -25,7 +25,7 @@ namespace Polaris.Lib.Packet
 		public byte[] ConstructPacket(PacketHeader header)
 		{
 			this.header = header;
-			this.data = new byte[0x50 - PacketHeader.HeaderSize];
+			this.data = new byte[this.header.size - PacketHeader.HeaderSize];
 
 			using (BinaryWriter writer = new BinaryWriter(new MemoryStream(this.data)))
 			{
