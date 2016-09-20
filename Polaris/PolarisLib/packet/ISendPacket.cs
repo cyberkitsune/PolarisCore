@@ -1,6 +1,4 @@
-﻿using Polaris.Lib.Packet;
-
-namespace PolarisLib.packet
+﻿namespace Polaris.Lib.Packet
 {
 	/// Packets sent by the server and received by the client
 	interface ISendPacket

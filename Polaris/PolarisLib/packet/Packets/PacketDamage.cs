@@ -1,4 +1,3 @@
-using PolarisLib.packet;
 using System.IO;
 
 namespace Polaris.Lib.Packet
