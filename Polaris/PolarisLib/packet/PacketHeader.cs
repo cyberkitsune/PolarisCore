@@ -2,10 +2,11 @@ using System;
 
 namespace Polaris.Lib.Packet
 {
-    // [Size:4][Type:1][SubType:1][Flag1:1][Flag2:1]
-
-    public class PacketHeader
+	// [Size:4][Type:1][SubType:1][Flag1:1][Flag2:1]
+	public class PacketHeader
     {
+		public const uint HeaderSize = 0x8;
+
         // TODO: Determine if these need to be set to read-only
         public uint size;
         public byte type;
