@@ -1,8 +1,6 @@
-using System;
-
 namespace Polaris.Lib.Data
 {
-    public enum ClassType : byte
+	public enum ClassType : byte
     {
         Hunter,
         Fighter,

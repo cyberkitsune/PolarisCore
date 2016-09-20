@@ -1,8 +1,6 @@
-using System;
-
 namespace Polaris.Lib.Data
 {
-    public class Figure
+	public class Figure
     {
         public ushort X { get; set; }
         public ushort Y { get; set; }

@@ -1,8 +1,6 @@
-using System;
-
 namespace Polaris.Lib.Utility
 {
-    public static class HalfPrecision
+	public static class HalfPrecision
     {
         public static unsafe float UIntToFloat(uint input)
         {

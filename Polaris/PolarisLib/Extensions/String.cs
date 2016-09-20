@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Polaris.Lib.Extensions
 {
-    public static class StringExtensions
+	public static class StringExtensions
     {
         public static string Combine(this string[] str, int offset = 0)
         {

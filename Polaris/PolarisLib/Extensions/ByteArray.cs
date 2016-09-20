@@ -1,10 +1,8 @@
-using System;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Polaris.Lib.Extensions
 {
-    public static class ByteArrayExtensions
+	public static class ByteArrayExtensions
     {
         public static string ToString(this byte[] array)
         {
