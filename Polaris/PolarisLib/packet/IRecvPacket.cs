@@ -1,4 +1,4 @@
-﻿namespace PolarisLib.packet
+﻿namespace Polaris.Lib.Packet
 {
 	/// Packets sent by the client and received by the server
     interface IRecvPacket
