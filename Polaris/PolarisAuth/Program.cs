@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 
+using Polaris.Lib.Utility;
+
 namespace Polaris.Auth
 {
 	public class Program
@@ -14,8 +16,11 @@ namespace Polaris.Auth
 
 			config = Config.Load("PolarisAuth.json");
 
-			Console.WriteLine("Hello world!");
-			Console.WriteLine($"Client Version: {config.ClientVersion}");
+			Logger.WriteToFile = config.FileLogging;
+			Logger.Init();
+
+			Logger.Write("Hello world!");
+			Logger.WriteInfo($"Client Version: {config.ClientVersion}");
 
 			Console.ReadLine();
 		}
