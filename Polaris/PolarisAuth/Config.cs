@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 
 namespace Polaris.Auth
 {
-    public class Config
-    {
+	public class Config
+	{
 		public string ClientVersion { get; } = "4.0402.1";
 
 		public string BindIP { get; } = "127.0.0.1";
@@ -29,5 +29,5 @@ namespace Polaris.Auth
 		{
 			return JsonConvert.DeserializeObject<Config>(File.ReadAllText(filename));
 		}
-    }
+	}
 }
