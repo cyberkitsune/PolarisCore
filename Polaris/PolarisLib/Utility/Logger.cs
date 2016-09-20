@@ -30,7 +30,7 @@ namespace Polaris.Lib.Utility
 
         public static void WriteMessage(string text, params object[] args)
         {
-            WriteLine(ConsoleColor.Cyan, "[MESSAGE}: " + string.Format(text, args));
+            WriteLine(ConsoleColor.Cyan, "[MESSAGE]: " + string.Format(text, args));
             WriteFile("[MESSAGE]: " + text, args);
         }
 
