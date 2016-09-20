@@ -1,5 +1,6 @@
 TODO: Everything.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/9jfet757ah3w7mrr/branch/develop?svg=true)](https://ci.appveyor.com/project/VariantXYZ/polariscore)
 [![Build status](https://travis-ci.org/PolarisTeam/PolarisCore.svg?branch=develop)](https://travis-ci.org/PolarisTeam/PolarisCore)
 
 Going to move and re-organize all the code from the PolarisServer project and get it to work with .NET core for 
