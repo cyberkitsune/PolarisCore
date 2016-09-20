@@ -16,5 +16,4 @@ matrix:
 script:
   - cd Polaris
   - time dotnet restore
-  - dotnet build ./PolarisAuth/project.json
-  - dotnet build ./PolarisServer/project.json
+  - dotnet build ./**/project.json
