@@ -10,12 +10,6 @@ namespace Polaris.Lib.Utility
 
 		public static bool WriteToFile { get; set; }
 
-		public static void Init()
-		{
-			if (WriteToFile)
-				writer = File.CreateText(Assembly.GetEntryAssembly().FullName.Split(',')[0] + ".log");
-		}
-
         public static void Write(string text, params object[] args)
         {
             WriteLine(ConsoleColor.White, string.Format(text, args));
@@ -114,7 +108,14 @@ namespace Polaris.Lib.Utility
 
         public static void WriteFile(string text, params object[] args)
         {
-			if (!WriteToFile || writer == null)
+			if (WriteToFile && writer == null)
+				writer = new StreamWriter(new FileStream(Assembly.GetEntryAssembly().FullName.Split(',')[0] + ".log", FileMode.Append));
+			else if (!WriteToFile && writer != null)
+			{
+				writer.Flush();
+				writer.Dispose();
+			}
+			else if (!WriteToFile || writer == null)
 				return;
 
             if (args.Length > 0)

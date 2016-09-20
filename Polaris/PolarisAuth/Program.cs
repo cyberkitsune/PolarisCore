@@ -15,7 +15,6 @@ namespace Polaris.Auth
 			Config.Load("PolarisAuth.json");
 
 			Logger.WriteToFile = Config.Instance.FileLogging;
-			Logger.Init();
 
 			Logger.Write("Hello world!");
 			Logger.WriteInfo($"Client Version: {Config.Instance.ClientVersion}");
