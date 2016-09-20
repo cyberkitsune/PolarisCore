@@ -1,5 +1,7 @@
 TODO: Everything.
 
+[![Build status](https://travis-ci.org/PolarisTeam/PolarisCore.svg?branch=develop)](https://travis-ci.org/PolarisTeam/PolarisCore)
+
 Going to move and re-organize all the code from the PolarisServer project and get it to work with .NET core for 
 multi-platform shenanigans.
 
