@@ -7,6 +7,8 @@ namespace Polaris.Auth
 {
 	public class Config
 	{
+		public static Config Instance { get; set; } = new Config();
+
 		public string ClientVersion { get; set; } = "4.0402.1";
 
 		public string BindIP { get; set; } = "127.0.0.1";
@@ -27,9 +29,9 @@ namespace Polaris.Auth
 			File.WriteAllText(filename, JsonConvert.SerializeObject(new Config(), Formatting.Indented));
 		}
 
-		public static Config Load(string filename)
+		public static void Load(string filename)
 		{
-			return JsonConvert.DeserializeObject<Config>(File.ReadAllText(filename));
+			Instance = JsonConvert.DeserializeObject<Config>(File.ReadAllText(filename));
 		}
 	}
 }
