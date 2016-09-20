@@ -1,0 +1,12 @@
+version: 1.0.{build}
+
+configuration:
+- Release
+- Debug
+
+before_build:
+- cmd: nuget restore "Polaris/Polaris.sln"
+
+build:
+  project: "Polaris/Polaris.sln"
+  verbosity: quiet
