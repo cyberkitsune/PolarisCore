@@ -12,6 +12,8 @@ matrix:
       sudo: required
       dotnet: 1.0.0-preview2-003121
       mono: none
+  allow_failures:
+    - os: osx
 
 script:
   - cd Polaris

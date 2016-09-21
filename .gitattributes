@@ -1,4 +1,6 @@
 # Normalize line endings
 *       text=auto
+*.cs    text=auto diff=csharp whitespace
+*.json  text=auto -whitespace
 *.xproj text eol=crlf
 *.sln   text eol=crlf
