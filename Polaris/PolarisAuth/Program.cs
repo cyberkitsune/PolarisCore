@@ -36,7 +36,7 @@ namespace Polaris.Auth
 		{
 			if (!File.Exists("PolarisAuth.json"))
 			{
-				Logger.WriteWarning("Configuration file does not exist, creating empty file...");
+				Logger.WriteWarning("Configuration file does not exist, creating base configuration...");
 				Config.Create("PolarisAuth.json");
 			}
 
