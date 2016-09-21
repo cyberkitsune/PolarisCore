@@ -12,7 +12,7 @@ namespace Polaris.Auth
 		public string ClientVersion { get; set; } = "4.0402.1";
 
 		public string BindIP { get; set; } = "127.0.0.1";
-		public uint Port { get; set; } = 12300;
+		public int Port { get; set; } = 12300;
 
 		public string RSAPublicKey { get; set; } = "publicKey.blob"; // File Path
 		public string RSAPrivateKey { get; set; } = "privateKey.blob"; // File Path

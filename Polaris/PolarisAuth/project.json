@@ -10,7 +10,9 @@
       "version": "1.0.1"
     },
     "Newtonsoft.Json": "9.0.1",
-    "PolarisLib": "*"
+    "PolarisLib": "*",
+    "System.Runtime.Loader": "4.0.0",
+    "System.Security.Cryptography.Csp": "4.0.0"
   },
 
   "frameworks": {

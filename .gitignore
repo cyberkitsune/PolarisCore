@@ -1,3 +1,8 @@
+## Polaris Specific
+
+*.blob
+PolarisAuth.json
+
 bin/
 obj/
 project.lock.json
