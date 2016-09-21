@@ -36,7 +36,7 @@ namespace Polaris.Auth
 		{
 			if (!File.Exists("PolarisAuth.json"))
 			{
-				Logger.WriteWarning("Configuration file does not exist, creating base configuration...");
+				Logger.WriteWarning("Configuration file does not exist, creating default configuration...");
 				Config.Create("PolarisAuth.json");
 			}
 
@@ -58,8 +58,8 @@ namespace Polaris.Auth
 		private static void CheckGenerateRSAKeys()
 		{
 			// TODO: Use configurations for the file paths
-			const string keyPublic = "./publickey.blob";
-			const string keyPrivate = "./privatekey.blob";
+			string keyPublic = Config.Instance.RSAPublicKey;
+			string keyPrivate = Config.Instance.RSAPrivateKey;
 
 			if (!File.Exists(keyPrivate) || !File.Exists(keyPublic))
 			{
