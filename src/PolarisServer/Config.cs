@@ -3,7 +3,7 @@ using System.IO;
 
 using Newtonsoft.Json;
 
-namespace Polaris.Auth
+namespace Polaris.Server
 {
 	public class Config
 	{

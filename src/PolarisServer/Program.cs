@@ -7,12 +7,13 @@ using System.Security.Cryptography;
 using Polaris.Lib.Utility;
 
 
-namespace Polaris.Auth
+namespace Polaris.Server
 {
 	public class Program
 	{
 		public static void Main(string[] args)
 		{
+			Logger.WriteInfo($"Current directory: {Directory.GetCurrentDirectory()}");
 			Logger.Write("Starting Authentication Server");
 			Logger.Write("Loading Configuration from PolarisAuth.json...");
 			InitConfig();
