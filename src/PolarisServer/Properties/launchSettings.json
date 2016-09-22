@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PolarisServer": {
+      "commandName": "Project",
+      "workingDirectory": "..\\..\\"
+    }
+  }
+}
