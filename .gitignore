@@ -1,7 +1,8 @@
 ## Polaris Specific
 
-cfg/*
-key/*
+cfg/
+key/
+log/
 
 bin/
 obj/

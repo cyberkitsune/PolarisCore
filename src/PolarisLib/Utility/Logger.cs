@@ -109,7 +109,11 @@ namespace Polaris.Lib.Utility
 		public static void WriteFile(string text, params object[] args)
 		{
 			if (WriteToFile && writer == null)
-				writer = new StreamWriter(new FileStream(Assembly.GetEntryAssembly().FullName.Split(',')[0] + ".log", FileMode.Append));
+			{
+				string fileName = $"log/{Assembly.GetEntryAssembly().FullName.Split(',')[0]}.log";
+				(new FileInfo(fileName)).Directory.Create();
+				writer = new StreamWriter(new FileStream(fileName, FileMode.Append));
+			}
 			else if (!WriteToFile && writer != null)
 			{
 				writer.Flush();

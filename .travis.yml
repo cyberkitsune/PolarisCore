@@ -1,5 +1,5 @@
 language: csharp
-solution: Polaris/Polaris.sln
+solution: src/Polaris.sln
 
 matrix:
   include:
@@ -16,6 +16,6 @@ matrix:
     - os: osx
 
 script:
-  - cd Polaris
+  - cd src
   - time dotnet restore
   - dotnet build ./**/project.json

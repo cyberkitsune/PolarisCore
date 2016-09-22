@@ -14,8 +14,8 @@ namespace Polaris.Auth
 		public string BindIP { get; set; } = "127.0.0.1";
 		public int Port { get; set; } = 12300;
 
-		public string RSAPublicKey { get; set; } = "publicKey.blob"; // File Path
-		public string RSAPrivateKey { get; set; } = "privateKey.blob"; // File Path
+		public string RSAPublicKey { get; set; } = "./key/publicKey.blob"; // File Path
+		public string RSAPrivateKey { get; set; } = "./key/privateKey.blob"; // File Path
 
 		public string DatabaseHost { get; set; } = "127.0.0.1";
 		public string DatabaseUsername { get; set; } = "Polaris";
@@ -26,6 +26,7 @@ namespace Polaris.Auth
 
 		public static void Create(string filename)
 		{
+			(new FileInfo(filename)).Directory.Create();
 			File.WriteAllText(filename, JsonConvert.SerializeObject(new Config(), Formatting.Indented));
 		}
 
