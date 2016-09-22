@@ -7,12 +7,13 @@ using System.Security.Cryptography;
 using Polaris.Lib.Utility;
 
 
-namespace Polaris.Auth
+namespace Polaris.Server
 {
 	public class Program
 	{
 		public static void Main(string[] args)
 		{
+			Logger.WriteInfo($"Current directory: {Directory.GetCurrentDirectory()}");
 			Logger.Write("Starting Authentication Server");
 			Logger.Write("Loading Configuration from PolarisAuth.json...");
 			InitConfig();
@@ -26,6 +27,7 @@ namespace Polaris.Auth
 			//Setup and start listener thread
 			SetupStartListener();
 			Logger.Write($"Listening for connections on {Config.Instance.BindIP}:{Config.Instance.Port}...");
+			Console.ReadLine();
 		}
 
 		private static void SetupStartListener()
@@ -35,13 +37,15 @@ namespace Polaris.Auth
 
 		private static void InitConfig()
 		{
-			if (!File.Exists("PolarisAuth.json"))
+			const string cfgFileName = "./cfg/PolarisAuth.json";
+
+			if (!File.Exists(cfgFileName))
 			{
 				Logger.WriteWarning("Configuration file does not exist, creating default configuration...");
-				Config.Create("PolarisAuth.json");
+				Config.Create(cfgFileName);
 			}
 
-			Config.Load("PolarisAuth.json");
+			Config.Load(cfgFileName);
 			Logger.WriteToFile = Config.Instance.FileLogging;
 		}
 
@@ -58,16 +62,18 @@ namespace Polaris.Auth
 
 		private static void CheckGenerateRSAKeys()
 		{
-			// TODO: Use configurations for the file paths
 			string keyPublic = Config.Instance.RSAPublicKey;
 			string keyPrivate = Config.Instance.RSAPrivateKey;
+
+			(new FileInfo(keyPublic)).Directory.Create();
+			(new FileInfo(keyPrivate)).Directory.Create();
 
 			if (!File.Exists(keyPrivate) || !File.Exists(keyPublic))
 			{
 				if (!File.Exists(keyPrivate))
-					Logger.WriteWarning($"Could not find existing private key at ${keyPrivate}");
+					Logger.WriteWarning($"Could not find existing private key at {keyPrivate}");
 				if (!File.Exists(keyPublic))
-					Logger.WriteWarning($"Could not find existing private key at ${keyPublic}");
+					Logger.WriteWarning($"Could not find existing private key at {keyPublic}");
 
 				Logger.WriteInfo("Creating new RSA key pair.");
 				RSACryptoServiceProvider rcsp = new RSACryptoServiceProvider();

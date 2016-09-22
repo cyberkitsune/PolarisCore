@@ -1,7 +1,8 @@
 ## Polaris Specific
 
-*.blob
-PolarisAuth.json
+cfg/
+key/
+log/
 
 bin/
 obj/

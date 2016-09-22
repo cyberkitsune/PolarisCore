@@ -5,7 +5,7 @@ configuration:
 - Debug
 
 before_build:
-- cmd: cd Polaris
+- cmd: cd src
 - cmd: dotnet restore
 - cmd: cd ..
 
