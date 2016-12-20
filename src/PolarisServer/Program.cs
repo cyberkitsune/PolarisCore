@@ -1,11 +1,14 @@
 using System;
 using System.IO;
-using System.Net;
-using System.Net.Sockets;
 using System.Security.Cryptography;
 
-using Polaris.Lib.Utility;
-
+using Polaris.Server.Modules.Ship;
+using Polaris.Server.Modules.Logging;
+using Polaris.Server.Shared;
+using Polaris.Server.Models;
+using Polaris.Lib.Packet.Common;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace Polaris.Server
 {
@@ -13,40 +16,51 @@ namespace Polaris.Server
 	{
 		public static void Main(string[] args)
 		{
-			Logger.WriteInfo($"Current directory: {Directory.GetCurrentDirectory()}");
-			Logger.Write("Starting Authentication Server");
-			Logger.Write("Loading Configuration from PolarisAuth.json...");
 			InitConfig();
+			Log.Instance.Initialize(Config.Instance.FileLogging);
+			Log.WriteInfo($"Current directory: {Directory.GetCurrentDirectory()}");
 			WriteHeaderInfo();
-			Logger.Write("Checking for RSA Keys...");
+			Log.Write("Checking for RSA Keys...");
 			CheckGenerateRSAKeys();
-			Logger.Write("Connecting to authentication database...");
+			Log.Write("Connecting to database...");
 			CheckTestConnectAuthDB();
-			Logger.Write("Authentication Server ready");
+			Log.Write("Connection to database OK");
+			CheckMisc();
 
-			//Setup and start listener thread
-			SetupStartListener();
-			Logger.Write($"Listening for connections on {Config.Instance.BindIP}:{Config.Instance.Port}...");
+			//Setup and start InfoServer
+			// TODO: Add flag to avoid starting info server (e.g. for hosting a single info server and multiple ships)
+
+			Log.Write("Starting InfoServer...");
+			Info.Instance.Initialize(Config.Instance.InfoBindIP, Config.Instance.InfoPort, Config.Instance.Ships);
+			Log.Write($"InfoServer listening for connections on {Config.Instance.InfoBindIP}:{Config.Instance.InfoPort}...");
+
+			Log.Write("Starting GameServer...");
+			Game.Instance.Initialize(Config.Instance.ShipBindIP, Config.Instance.ShipPort, Config.Instance.ShipID, Config.Instance.Blocks);
+			Log.Write($"GameServer listening for connections on {Config.Instance.ShipBindIP}:{Config.Instance.ShipPort}...");
+
 			Console.ReadLine();
 		}
 
-		private static void SetupStartListener()
+		private static void CheckMisc()
 		{
-			// TODO
+			Log.Write("Checking Packet List...");
+			foreach (KeyValuePair<ushort,Type> t in PacketBase.PacketMap)
+			{
+				if (!t.Value.GetTypeInfo().IsSubclassOf(typeof(PacketBase)))
+					Log.WriteError($"Packet {t.Key:X4} points to a non-packet type");
+			}
 		}
 
 		private static void InitConfig()
 		{
-			const string cfgFileName = "./cfg/PolarisAuth.json";
+			const string cfgFileName = "./cfg/PolarisServer.json";
 
 			if (!File.Exists(cfgFileName))
 			{
-				Logger.WriteWarning("Configuration file does not exist, creating default configuration...");
+				Log.WriteWarning("Configuration file did not exist, created default configuration.");
 				Config.Create(cfgFileName);
 			}
-
 			Config.Load(cfgFileName);
-			Logger.WriteToFile = Config.Instance.FileLogging;
 		}
 
 		private static void CheckTestConnectAuthDB()
@@ -57,7 +71,7 @@ namespace Polaris.Server
 		private static void WriteHeaderInfo()
 		{
 			//TODO: Include version info and other configurations in here
-			Logger.WriteInfo($"Client Version: {Config.Instance.ClientVersion}");
+			Log.WriteInfo($"Client Version: {Config.Instance.ClientVersion}");
 		}
 
 		private static void CheckGenerateRSAKeys()
@@ -71,27 +85,29 @@ namespace Polaris.Server
 			if (!File.Exists(keyPrivate) || !File.Exists(keyPublic))
 			{
 				if (!File.Exists(keyPrivate))
-					Logger.WriteWarning($"Could not find existing private key at {keyPrivate}");
+					Log.WriteWarning($"Could not find existing private key at {keyPrivate}");
 				if (!File.Exists(keyPublic))
-					Logger.WriteWarning($"Could not find existing private key at {keyPublic}");
+					Log.WriteWarning($"Could not find existing private key at {keyPublic}");
 
-				Logger.WriteInfo("Creating new RSA key pair.");
+				Log.WriteInfo("Creating new RSA key pair.");
 				RSACryptoServiceProvider rcsp = new RSACryptoServiceProvider();
 
 				using (FileStream outFile = File.Create(keyPrivate))
 				{
 					byte[] cspBlob = rcsp.ExportCspBlob(true);
 					outFile.Write(cspBlob, 0, cspBlob.Length);
-					Logger.WriteInfo($"Generated Private Key at {keyPrivate}");
+					Log.WriteInfo($"Generated Private Key at {keyPrivate}");
 				}
 
 				using (FileStream outFile = File.Create(keyPublic))
 				{
 					byte[] cspBlob = rcsp.ExportCspBlob(false);
 					outFile.Write(cspBlob, 0, cspBlob.Length);
-					Logger.WriteInfo($"Generated Public Key at {keyPublic}");
+					Log.WriteInfo($"Generated Public Key at {keyPublic}");
 				}
 			}
+
+			Connection.Initialize(keyPrivate);
 		}
 	}
 }

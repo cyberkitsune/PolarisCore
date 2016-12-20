@@ -5,12 +5,12 @@ matrix:
   include:
     - os: osx
       osx_image: xcode7.3
-      dotnet: 1.0.0-preview2-003121
+      dotnet: 1.0.0-preview2-003131
       mono: none
     - os: linux
       dist: trusty
       sudo: required
-      dotnet: 1.0.0-preview2-003121
+      dotnet: 1.0.0-preview2-003131
       mono: none
   allow_failures:
     - os: osx
@@ -19,3 +19,4 @@ script:
   - cd src
   - time dotnet restore
   - dotnet build ./**/project.json
+  - dotnet test ./PolarisTests/project.json
