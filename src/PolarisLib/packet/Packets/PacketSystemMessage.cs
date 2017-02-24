@@ -1,10 +1,7 @@
 ﻿using Polaris.Lib.Packet.Common;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Polaris.Lib.packet.Packets
 {
@@ -19,7 +16,7 @@ namespace Polaris.Lib.packet.Packets
         public override uint PKT_SUB { get { return 0xA2; } }
         public override uint PKT_XOR { get { return 0x78F7; } }
 
-        public enum MessageType : UInt32
+        public enum MessageType : uint
         {
             GoldenTicker = 0,
             AdminNotice,
@@ -43,7 +40,7 @@ namespace Polaris.Lib.packet.Packets
                 {
                     bw.Write((ushort)0);
                 }
-                bw.Write((UInt32)Type);
+                bw.Write((uint)Type);
             }
         }
     }
